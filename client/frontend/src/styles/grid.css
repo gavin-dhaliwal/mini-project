@@ -1,0 +1,23 @@
+.pokemon-grid {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.item {
+  display: inline-grid;
+  text-align: center;
+  margin: 20px;
+  outline-style: dashed;
+  outline-width: 1px;
+}
+
+.item:hover {
+  cursor: pointer;
+  opacity: 0.3;
+}
+
+.name {
+  margin: 0px;
+  padding-top: 5px;
+}
