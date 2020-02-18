@@ -1,12 +1,15 @@
 const mysql = require("mysql");
+const key = require("./service/mysql");
+
+const { connectLimit, password, user, database, host, port } = key; //Deconstruct key
 
 const connect = mysql.createConnection({
-  connectLimit: 10,
-  password: "admin",
-  user: "devuser",
-  database: "Pokemons",
-  host: "",
-  port: ""
+  connectLimit,
+  password,
+  user,
+  database,
+  host,
+  port
 });
 
 let Pokemons_db = {};
