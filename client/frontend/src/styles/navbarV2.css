@@ -1,8 +1,9 @@
-.container {
+.nav-container {
   background-color: rgb(208, 255, 187);
+  padding-top: 10px;
 }
 
-.container::after {
+.nav-container::after {
   content: "";
   display: table;
   clear: both;
@@ -11,6 +12,8 @@
 .title {
   float: left;
   padding-left: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
 }
 
 nav {
@@ -26,7 +29,7 @@ nav ul {
 nav li {
   display: inline-block;
   margin: 0 40px;
-  padding-top: 20px;
+  padding-top: 5px;
 }
 
 nav a {
@@ -34,4 +37,9 @@ nav a {
   text-decoration: none;
   padding: 8px 15px;
   text-transform: uppercase;
+}
+
+nav a:hover {
+  text-decoration: none;
+  color: #444;
 }

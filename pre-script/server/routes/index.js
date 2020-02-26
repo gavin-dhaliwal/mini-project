@@ -5,12 +5,12 @@ const axios = require("axios");
 const router = express.Router();
 
 router.get("/", (req, res) => {
-	res.send("Server is active").status(200);
+  res.send("Server is active").status(200);
 });
 
 router.get("/gcp/script", async (req, res) => {
-	const result = await db.all();
-	res.json(result);
+  const result = await db.all();
+  res.json(result);
 });
 
 // router.get("/pokeapi/all", async (req, res) => {
@@ -56,5 +56,54 @@ router.get("/gcp/script", async (req, res) => {
 
 // 	res.send(200);
 // });
+
+/*
+FIRESTORE CODE BELOW ---------
+*/
+
+// const PokemonNameresults = await axios.get(
+// 	"https://pokeapi.co/api/v2/generation/1/"
+//   );
+//   const pokemonNames = PokemonNameresults.data.pokemon_species.map(
+// 	pokemon => {
+// 	  return pokemon.name;
+// 	}
+//   );
+
+//   const pokemonPromise = pokemonNames.map(name =>
+// 	axios({
+// 	  url: `https://pokeapi.co/api/v2/pokemon/${name}`,
+// 	  method: "GET",
+// 	  headers: {
+// 		"content-type": "application/json",
+// 		accept: "application/json"
+// 	  }
+// 	})
+//   );
+
+//   const allowed = [
+// 	"abilities",
+// 	"height",
+// 	"base_experience",
+// 	"name",
+// 	"types",
+// 	"weight"
+//   ];
+
+//   const results = await Promise.all(pokemonPromise);
+//   const finalResults = results.map(result => result.data);
+
+//   const filter = finalResults.map(results => {
+// 	const filtered = Object.keys(results)
+// 	  .filter(key => allowed.includes(key))
+// 	  .reduce((obj, key) => {
+// 		return { ...obj, [key]: results[key] };
+// 	  }, {});
+// 	return filtered;
+//   });
+
+//   filter.map(pokemon => {
+// 	const write = firestore_db.addOne(pokemon.name, pokemon);
+//   });
 
 module.exports = router;

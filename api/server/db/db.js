@@ -4,12 +4,11 @@ const key = require("./service/mysql");
 const { connectLimit, password, user, database, host, port } = key; //Deconstruct key
 
 const connect = mysql.createConnection({
-  connectLimit,
   password,
   user,
   database,
-  host,
-  port
+  socketPath:
+    "/cloudsql/dpduk-developer-gavin-dhaliwal:europe-west2:cloud-sql-instance"
 });
 
 let Pokemons_db = {};
