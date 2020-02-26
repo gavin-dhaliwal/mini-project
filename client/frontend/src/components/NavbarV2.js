@@ -1,5 +1,4 @@
 import React from "react";
-import "../styles/navbarV2.css";
 
 class NavbarV2 extends React.Component {
   componentDidMount() {
@@ -8,19 +7,23 @@ class NavbarV2 extends React.Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="nav-container">
         <h3 className="title">Pokemon Index</h3>
 
-        <nav>
-          <ul>
-            <li>
-              <a href="/">Home</a>
+        <nav className="navbarnav">
+          <ul className="navbarul">
+            <li className="navbarli">
+              <a className="navbara" href="/">
+                Home
+              </a>
             </li>
             <li>
               <a href="/">About</a>
             </li>
-            <li>
-              <a href="/">Sign In</a>
+            <li className="navbarli">
+              <a className="navbara" href="/">
+                Sign In
+              </a>
             </li>
           </ul>
         </nav>

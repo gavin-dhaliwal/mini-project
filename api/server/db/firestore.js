@@ -28,7 +28,7 @@ firestore_db.getOne = async name => {
     const data = result.data();
     return data;
   } else {
-    return new Error("No such doc");
+    throw new Error("No such doc");
   }
 };
 

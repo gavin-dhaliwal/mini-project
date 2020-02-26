@@ -5,12 +5,12 @@ const firestore_db = require("../db/firestore");
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
+router.get("/", (_, res) => {
   res.send("Server is active").status(200);
 });
 
 //main page of frontend api call
-router.get("/api/all", async (req, res) => {
+router.get("/api/all", async (_, res) => {
   try {
     const result = await db.all();
     res.json(result);
@@ -46,7 +46,6 @@ router.get("/api/add/:id", async (req, res) => {
 //gets all documents from the firestore database
 router.get("/api/firestore/all", async (req, res) => {
   const request = await firestore_db.getAll();
-
   res.json(request);
 });
 
