@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
-import ViewModal from "./Modal";
+import ViewModal from "./ViewModal";
+import upperCase from "../utils/uppercase";
 
 class PokemonList extends React.Component {
   state = {
@@ -9,7 +10,9 @@ class PokemonList extends React.Component {
     pokemon_pic: null
   };
   async fetchPokemons() {
-    const result = await axios.get("http://localhost:3000/api/all");
+    const result = await axios.get(
+      "https://dpduk-developer-gavin-dhaliwal.appspot.com/api/all"
+    );
     this.setState({ pokemons: result.data });
   }
 
@@ -21,25 +24,20 @@ class PokemonList extends React.Component {
     this.setState({ clickedOn: pokemon, pokemon_pic: image });
   };
 
-  renderPokemonList = () => {
-    return this.state.pokemons.map((pokemon, index) => {
-      return (
-        <div
-          key={index}
-          className="pokemonitem"
-          onClick={() =>
-            this.onClick(pokemon.pokemon_name, pokemon.pokemon_image)
-          }
-        >
-          <h4 className="pokemonname">
-            {pokemon.pokemon_name.charAt(0).toUpperCase() +
-              pokemon.pokemon_name.slice(1)}
-          </h4>
-          <img className="pokemonimage" src={pokemon.pokemon_image} />
-        </div>
-      );
-    });
-  };
+  renderPokemonList = () =>
+    this.state.pokemons.map((pokemon, index) => (
+      <div
+        key={index}
+        className="pokemonitem"
+        onClick={() =>
+          this.onClick(pokemon.pokemon_name, pokemon.pokemon_image)
+        }
+      >
+        <h2 className="pokemonname">{upperCase(pokemon.pokemon_name)}</h2>
+        <img className="pokemonimage" src={pokemon.pokemon_image} />
+      </div>
+    ));
+
   render() {
     return (
       <div>
