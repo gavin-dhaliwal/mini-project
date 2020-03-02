@@ -8,7 +8,7 @@ class NavbarV2 extends React.Component {
   render() {
     return (
       <div className="nav-container">
-        <h3 className="title">Pokemon Index</h3>
+        <h1 className="title">Pokemon Index</h1>
 
         <nav className="navbarnav">
           <ul className="navbarul">
