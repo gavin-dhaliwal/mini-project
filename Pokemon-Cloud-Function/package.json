@@ -1,0 +1,11 @@
+{
+  "name": "pokemoncf",
+  "version": "1.0.0",
+  "main": "pokemon-cf.js",
+  "license": "MIT",
+  "dependencies": {
+    "@google-cloud/storage": "^4.4.0",
+    "firebase-admin": "^8.9.2",
+    "mysql": "^2.18.1"
+  }
+}

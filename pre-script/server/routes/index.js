@@ -1,16 +1,11 @@
 const express = require("express");
-const db = require("../db/db");
+//const db = require("../db/db");
 const axios = require("axios");
 
 const router = express.Router();
 
 router.get("/", (req, res) => {
   res.send("Server is active").status(200);
-});
-
-router.get("/gcp/script", async (req, res) => {
-  const result = await db.all();
-  res.json(result);
 });
 
 // router.get("/pokeapi/all", async (req, res) => {
@@ -105,5 +100,22 @@ FIRESTORE CODE BELOW ---------
 //   filter.map(pokemon => {
 // 	const write = firestore_db.addOne(pokemon.name, pokemon);
 //   });
+
+// const forrmat = request.map(pokemon => {
+//   const abils = pokemon.abilities.map(ab => ab.ability.name);
+//   const types = pokemon.types.map(ty => ty.type.name);
+//   return {
+//     height: pokemon.height,
+//     types: types,
+//     level: pokemon.base_experience,
+//     name: pokemon.name,
+//     weight: pokemon.weight,
+//     abilities: abils
+//   };
+// });
+
+// forrmat.map(pokemon => {
+//   const write = firestore_db.addOneV2(pokemon.name, pokemon);
+// });
 
 module.exports = router;

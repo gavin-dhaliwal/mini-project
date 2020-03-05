@@ -4,6 +4,9 @@ import ViewModal from "./ViewModal";
 import upperCase from "../utils/uppercase";
 
 class PokemonList extends React.Component {
+  constructor(props) {
+    super(props);
+  }
   state = {
     pokemons: [],
     clickedOn: null,
@@ -18,6 +21,24 @@ class PokemonList extends React.Component {
 
   componentDidMount() {
     this.fetchPokemons();
+  }
+
+  async fetchSorted(orderType) {
+    const result = await axios.get(
+      `https://dpduk-developer-gavin-dhaliwal.appspot.com/api/all/order/${orderType}`
+    );
+    this.setState({ pokemons: result.data });
+  }
+
+  componentDidUpdate(prevProps) {
+    const { orderby } = this.props;
+    if (orderby !== prevProps.orderby) {
+      if (orderby.orderby[0].asc) {
+        this.fetchSorted("asc");
+      } else {
+        this.fetchSorted("desc");
+      }
+    }
   }
 
   onClick = (pokemon, image) => {

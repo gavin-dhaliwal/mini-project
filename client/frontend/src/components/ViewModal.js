@@ -31,19 +31,9 @@ class ViewModal extends React.Component {
     }
   }
 
-  pTypes() {
+  pokeTYAB(element) {
     return this.state.pokemon.length !== 0
-      ? this.state.pokemon.types
-          .map(type => upperCase(type.type.name))
-          .join(" | ")
-      : "Unknown";
-  }
-
-  pAbilities() {
-    return this.state.pokemon.length !== 0
-      ? this.state.pokemon.abilities
-          .map(abil => upperCase(abil.ability.name))
-          .join(" | ")
+      ? element.map(e => upperCase(e)).join(" | ")
       : "Unknown";
   }
 
@@ -65,19 +55,25 @@ class ViewModal extends React.Component {
         <ModalBody>
           <dl className="docList">
             <dt className="docTitle">Level:</dt>
-            <dd className="docDes">{this.state.pokemon.base_experience}</dd>
+            <dd className="docDes">{this.state.pokemon.level}</dd>
             <dt className="docTitle">Types:</dt>
-            <dd className="docDes">{this.pTypes()}</dd>
+            <dd className="docDes">
+              {this.pokeTYAB(this.state.pokemon.types)}
+            </dd>
             <dt className="docTitle">Height:</dt>
             <dd className="docDes">{this.state.pokemon.height}</dd>
             <dt className="docTitle">Weight:</dt>
             <dd className="docDes">{this.state.pokemon.weight}</dd>
             <dt className="docTitle">Abilities:</dt>
-            <dd className="docDes">{this.pAbilities()}</dd>
+            <dd className="docDes">
+              {this.pokeTYAB(this.state.pokemon.abilities)}
+            </dd>
           </dl>
         </ModalBody>
         <ModalFooter>
-          <button onClick={() => this.setState({ showModal: false })}>
+          <button
+            onClick={() => this.setState({ showModal: false, pokemon: [] })}
+          >
             Exit
           </button>
         </ModalFooter>

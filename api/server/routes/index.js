@@ -19,6 +19,22 @@ router.get("/api/all", async (_, res) => {
   }
 });
 
+//order by
+router.get("/api/all/order/:sort", async (req, res) => {
+  const type = req.params.sort;
+  try {
+    if (type === "asc") {
+      const result = await db.orderASC();
+      res.json(result);
+    } else if (type === "desc") {
+      const result = await db.orderDESC();
+      res.json(result);
+    }
+  } catch (e) {
+    return console.log(e);
+  }
+});
+
 // use to add item into firestore
 router.get("/api/add/:id", async (req, res) => {
   try {

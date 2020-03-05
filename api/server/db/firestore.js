@@ -8,7 +8,7 @@ const db = admin.firestore();
 let firestore_db = {};
 
 firestore_db.getAll = async () => {
-  const result = await db.collection("pokemons").get();
+  const result = await db.collection("pokemonsV2").get();
   const array = [];
   const res = result.docs.forEach(doc => {
     const data = doc.data();
@@ -20,7 +20,7 @@ firestore_db.getAll = async () => {
 
 firestore_db.getOne = async name => {
   const result = await db
-    .collection("pokemons")
+    .collection("pokemonsV2")
     .doc(name)
     .get();
 
@@ -35,7 +35,7 @@ firestore_db.getOne = async name => {
 firestore_db.addOne = async (name, data) => {
   try {
     const result = await db
-      .collection("pokemons")
+      .collection("pokemonsV2")
       .doc(name)
       .set(data);
   } catch (e) {
