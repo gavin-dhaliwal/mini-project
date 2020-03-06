@@ -6,7 +6,7 @@ const firestore_db = require("../db/firestore");
 const router = express.Router();
 
 router.get("/", (_, res) => {
-  res.send("Server is active").status(200);
+  res.send("Server is active");
 });
 
 //main page of frontend api call
@@ -52,7 +52,7 @@ router.get("/api/add/:id", async (req, res) => {
       }, {});
 
     const write = await firestore_db.addOne(req.params.id, filtered);
-    res.send(200);
+    res.sendStatus(200);
   } catch (e) {
     console.log(e);
     return res.sendStatus(500);
@@ -70,6 +70,17 @@ router.get("/api/firestore/one/:id", async (req, res) => {
   const request = await firestore_db.getOne(req.params.id);
 
   res.json(request);
+});
+
+router.get("/api/delete/one/:id", async (req, res) => {
+  try {
+    const request = await axios.get(
+      `https://us-central1-dpduk-developer-gavin-dhaliwal.cloudfunctions.net/pokemon_cf?name=${req.params.id}`
+    );
+    res.sendStatus(200);
+  } catch (e) {
+    res.sendStatus(500);
+  }
 });
 
 module.exports = router;

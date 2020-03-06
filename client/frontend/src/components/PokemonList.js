@@ -4,13 +4,11 @@ import ViewModal from "./ViewModal";
 import upperCase from "../utils/uppercase";
 
 class PokemonList extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   state = {
     pokemons: [],
     clickedOn: null,
-    pokemon_pic: null
+    pokemon_pic: null,
+    show: false
   };
   async fetchPokemons() {
     const result = await axios.get(
@@ -27,17 +25,17 @@ class PokemonList extends React.Component {
     const result = await axios.get(
       `https://dpduk-developer-gavin-dhaliwal.appspot.com/api/all/order/${orderType}`
     );
-    this.setState({ pokemons: result.data });
+    this.setState({
+      pokemons: result.data
+    });
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     const { orderby } = this.props;
     if (orderby !== prevProps.orderby) {
-      if (orderby.orderby[0].asc) {
-        this.fetchSorted("asc");
-      } else {
-        this.fetchSorted("desc");
-      }
+      orderby.orderby[0].asc
+        ? this.fetchSorted("asc")
+        : this.fetchSorted("desc");
     }
   }
 
@@ -60,13 +58,14 @@ class PokemonList extends React.Component {
     ));
 
   render() {
+    //console.log(this.state);
     return (
       <div>
+        <div className="pokemongrid">{this.renderPokemonList()}</div>
         <ViewModal
           pokemon={this.state.clickedOn}
           image={this.state.pokemon_pic}
         />
-        <div className="pokemongrid">{this.renderPokemonList()}</div>
       </div>
     );
   }

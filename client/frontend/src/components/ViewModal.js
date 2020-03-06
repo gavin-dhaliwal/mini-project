@@ -3,6 +3,7 @@ import { Modal, ModalBody, ModalHeader, ModalFooter } from "reactstrap";
 import axios from "axios";
 import upperCase from "../utils/uppercase";
 import "../styles/modal.css";
+import { connect } from "react-redux";
 
 class ViewModal extends React.Component {
   constructor(props) {
@@ -37,7 +38,19 @@ class ViewModal extends React.Component {
       : "Unknown";
   }
 
+  async handelDelete(pokemonName) {
+    try {
+      await axios.get(
+        `https://dpduk-developer-gavin-dhaliwal.appspot.com/api/delete/one/${pokemonName}`
+      );
+      window.location.reload(false);
+    } catch (e) {
+      return console.log(e);
+    }
+  }
+
   renderModal() {
+    const { isAuthenticated } = this.props;
     return (
       <Modal
         isOpen={this.state.showModal}
@@ -50,7 +63,9 @@ class ViewModal extends React.Component {
       >
         <ModalHeader>
           <img src={this.props.image} />
-          {this.props.pokemon.toUpperCase()}
+          {this.props.pokemon !== null
+            ? this.props.pokemon.toUpperCase()
+            : null}
         </ModalHeader>
         <ModalBody>
           <dl className="docList">
@@ -71,8 +86,15 @@ class ViewModal extends React.Component {
           </dl>
         </ModalBody>
         <ModalFooter>
+          {isAuthenticated ? (
+            <button onClick={() => this.handelDelete(this.props.pokemon)}>
+              Delete
+            </button>
+          ) : null}
           <button
-            onClick={() => this.setState({ showModal: false, pokemon: [] })}
+            onClick={() => {
+              this.setState({ showModal: false });
+            }}
           >
             Exit
           </button>
@@ -86,4 +108,10 @@ class ViewModal extends React.Component {
   }
 }
 
-export default ViewModal;
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.auth.isAuthenticated
+  };
+};
+
+export default connect(mapStateToProps)(ViewModal);

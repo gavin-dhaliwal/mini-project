@@ -1,35 +1,23 @@
 import React from "react";
-import "../styles/modal.scss";
-import "../styles/navbarV2.css";
-import "../styles/grid.css";
+import { Route, Switch } from "react-router-dom";
+import { connect } from "react-redux";
+import Home from "./Home";
+import SignIn from "../screens/SignIn";
 
-import NavbarV2 from "./NavbarV2";
-import PokemonList from "./PokemonList";
+const App = () => {
+  return (
+    <Switch>
+      <Route path="/" component={Home} exact />
+      <Route path="/signin" component={SignIn} exact />
+    </Switch>
+  );
+};
 
-class App extends React.Component {
-  state = { orderby: [{ asc: null, desc: null }] };
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.auth.isAuthenticated,
+    isVerifying: state.auth.isVerifying
+  };
+};
 
-  onOrderBy(orderMethod) {
-    orderMethod === "asc"
-      ? this.setState({
-          ...this.state,
-          orderby: [{ asc: true }, { desc: null }]
-        })
-      : this.setState({
-          ...this.state,
-          orderby: [{ des: true }, { asc: null }]
-        });
-  }
-
-  render() {
-    console.log(this.state);
-    return (
-      <div>
-        <NavbarV2 orderby={orderMethod => this.onOrderBy(orderMethod)} />
-        <PokemonList orderby={this.state} />
-      </div>
-    );
-  }
-}
-
-export default App;
+export default connect(mapStateToProps)(App);
