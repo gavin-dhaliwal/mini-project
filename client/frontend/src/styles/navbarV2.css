@@ -20,6 +20,15 @@
   font-size: small;
 }
 
+.signoutButton {
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+}
+
 h1 {
   font-size: 30px;
 }

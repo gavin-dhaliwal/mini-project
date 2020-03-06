@@ -1,10 +1,9 @@
 import React from "react";
 import "../styles/navbarV2.css";
+import { connect } from "react-redux";
+import { logoutUser } from "../auth/actions";
 
 class NavbarV2 extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   componentDidMount() {
     document.body.style.margin = 0;
   }
@@ -13,6 +12,24 @@ class NavbarV2 extends React.Component {
     const selectBox = document.getElementById("order");
     const selectedValue = selectBox.options[selectBox.selectedIndex].value;
     this.props.orderby(selectedValue);
+  }
+
+  handelSignOut() {
+    const { dispatch } = this.props;
+
+    dispatch(logoutUser());
+  }
+
+  checkAuth() {
+    return this.props.isAuthenticated ? (
+      <button className="signoutButton" onClick={() => this.handelSignOut()}>
+        SIGN OUT
+      </button>
+    ) : (
+      <a className="navbara" href="/signin">
+        Sign In
+      </a>
+    );
   }
 
   render() {
@@ -38,13 +55,9 @@ class NavbarV2 extends React.Component {
               </a>
             </li>
             <li>
-              <a href="/">About</a>
+              <a href="/about">About</a>
             </li>
-            <li className="navbarli">
-              <a className="navbara" href="/">
-                Sign In
-              </a>
-            </li>
+            <li className="navbarli">{this.checkAuth()}</li>
           </ul>
         </nav>
       </div>
@@ -52,4 +65,10 @@ class NavbarV2 extends React.Component {
   }
 }
 
-export default NavbarV2;
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.auth.isAuthenticated
+  };
+};
+
+export default connect(mapStateToProps)(NavbarV2);
