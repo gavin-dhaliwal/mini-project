@@ -4,9 +4,7 @@ import {
   LOGIN_FAILURE,
   LOGOUT_SUCCESS,
   LOGOUT_REQUEST,
-  LOGOUT_FAILURE,
-  VERIFY_REQUEST,
-  VERIFY_SUCCESS
+  LOGOUT_FAILURE
 } from "../actions/index";
 
 export default (
@@ -59,16 +57,6 @@ export default (
         ...state,
         logoutError: true,
         isLoggingOut: false
-      };
-    case VERIFY_SUCCESS:
-      return {
-        ...state,
-        isVerifying: false
-      };
-    case VERIFY_REQUEST:
-      return {
-        ...state,
-        isVerifying: true
       };
     default:
       return state;
