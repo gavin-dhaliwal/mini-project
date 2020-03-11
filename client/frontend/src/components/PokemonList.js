@@ -30,7 +30,7 @@ class PokemonList extends React.Component {
     });
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     const { orderby } = this.props;
     if (orderby !== prevProps.orderby) {
       orderby.orderby[0].asc

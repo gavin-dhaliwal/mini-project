@@ -8,12 +8,6 @@ export const LOGOUT_REQUEST = "LOGOUT_REQUEST";
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 export const LOGOUT_FAILURE = "LOGOUT_FAILURE";
 
-const requestLogin = () => {
-  return {
-    type: LOGIN_REQUEST
-  };
-};
-
 const receiveLogin = user => {
   return {
     type: LOGIN_SUCCESS,
@@ -24,12 +18,6 @@ const receiveLogin = user => {
 const loginError = () => {
   return {
     type: LOGIN_FAILURE
-  };
-};
-
-const logoutRequest = () => {
-  return {
-    type: LOGOUT_REQUEST
   };
 };
 
@@ -46,7 +34,6 @@ const logoutFailure = () => {
 };
 
 export const loginUser = (email, password) => async dispatch => {
-  dispatch(requestLogin());
   try {
     const user = await myFirebase
       .auth()
@@ -58,7 +45,6 @@ export const loginUser = (email, password) => async dispatch => {
 };
 
 export const logoutUser = () => async dispatch => {
-  dispatch(logoutRequest());
   try {
     await myFirebase.auth().signOut();
     dispatch(logoutSuccess());

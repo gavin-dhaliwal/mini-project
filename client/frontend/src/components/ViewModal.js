@@ -50,7 +50,7 @@ class ViewModal extends React.Component {
   }
 
   renderModal() {
-    const { isAuthenticated } = this.props;
+    const { isAuthenticated, user } = this.props;
     return (
       <Modal
         isOpen={this.state.showModal}
@@ -110,7 +110,8 @@ class ViewModal extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    isAuthenticated: state.auth.isAuthenticated
+    isAuthenticated: state.auth.isAuthenticated,
+    user: state.auth.user
   };
 };
 

@@ -1,17 +1,12 @@
 import {
-  LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
   LOGOUT_SUCCESS,
-  LOGOUT_REQUEST,
   LOGOUT_FAILURE
 } from "../actions/index";
 
 export default (
   state = {
-    isLoggingIn: false,
-    isLoggingOut: false,
-    isVerifying: false,
     loginError: false,
     logoutError: false,
     isAuthenticated: false,
@@ -20,12 +15,6 @@ export default (
   action
 ) => {
   switch (action.type) {
-    case LOGIN_REQUEST:
-      return {
-        ...state,
-        isLoggingIn: true,
-        loginError: false
-      };
     case LOGIN_SUCCESS:
       return {
         ...state,
@@ -45,12 +34,6 @@ export default (
         ...state,
         isAuthenticated: false,
         user: {}
-      };
-    case LOGOUT_REQUEST:
-      return {
-        ...state,
-        isLoggingOut: true,
-        logoutError: false
       };
     case LOGOUT_FAILURE:
       return {

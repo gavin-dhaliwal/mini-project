@@ -43,4 +43,15 @@ firestore_db.addOne = async (name, data) => {
   }
 };
 
+firestore_db.deleteOne = async name => {
+  try {
+    await db
+      .collection("pokemonsV2")
+      .doc(name)
+      .delete();
+  } catch (e) {
+    throw e;
+  }
+};
+
 module.exports = firestore_db;

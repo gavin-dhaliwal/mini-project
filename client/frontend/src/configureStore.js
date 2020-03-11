@@ -3,12 +3,8 @@ import thunkMiddleware from "redux-thunk";
 import { verifyAuth } from "./auth/actions/index";
 import rootReducer from "./auth/reducers";
 
-export default function configureStore(persistedState) {
-  const store = createStore(
-    rootReducer,
-    persistedState,
-    applyMiddleware(thunkMiddleware)
-  );
+export default function configureStore() {
+  const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
   store.dispatch(verifyAuth());
   return store;
 }

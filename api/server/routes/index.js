@@ -74,9 +74,7 @@ router.get("/api/firestore/one/:id", async (req, res) => {
 
 router.get("/api/delete/one/:id", async (req, res) => {
   try {
-    const request = await axios.get(
-      `https://us-central1-dpduk-developer-gavin-dhaliwal.cloudfunctions.net/pokemon_cf?name=${req.params.id}`
-    );
+    const request = await firestore_db.deleteOne(req.params.id);
     res.sendStatus(200);
   } catch (e) {
     res.sendStatus(500);

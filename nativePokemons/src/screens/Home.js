@@ -18,8 +18,6 @@ const Home = ({navigation, pokemons, dispatch}) => {
 
   if (!pokemons.length) null;
 
-  console.log(pokemons.length, navigation);
-
   return (
     <ScrollView>
       <View style={styles.container}>

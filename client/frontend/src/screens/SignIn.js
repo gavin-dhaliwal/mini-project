@@ -24,7 +24,6 @@ class SignIn extends React.Component {
   };
 
   render() {
-    console.log(this.state);
     const { isAuthenticated, loginError } = this.props;
 
     if (isAuthenticated) {
